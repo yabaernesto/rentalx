@@ -1,19 +1,18 @@
-import { Category } from '../../model/Category';
-import { ICategoriesRepository, ICreateCategoryDTO } from '../ICategoriesRepository';
+import { Category } from "../model/Category";
+import { ICategoriesRepository, ICreateCategoryDT0 } from "./ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
 
-  // Padrao SINGLETON
+  // Padrao Singleton Patters
   private static INSTANCE: CategoriesRepository;
 
   private constructor() {
     this.categories = [];
   }
 
-  // Metodo estatico de instancia
-  public static getInstance(): CategoriesRepository {
-
+  // logica
+  public static getItem(): CategoriesRepository {
     if (!CategoriesRepository.INSTANCE) {
       CategoriesRepository.INSTANCE = new CategoriesRepository();
     }
@@ -21,7 +20,7 @@ class CategoriesRepository implements ICategoriesRepository {
     return CategoriesRepository.INSTANCE;
   }
 
-  create({ name, description }: ICreateCategoryDTO): void {
+  create({ name, description }: ICreateCategoryDT0): void {
     const category = new Category();
 
     Object.assign(category, {
@@ -29,7 +28,7 @@ class CategoriesRepository implements ICategoriesRepository {
       description,
       created_at: new Date()
     });
-  
+
     this.categories.push(category);
   }
 

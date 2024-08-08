@@ -1,5 +1,5 @@
-import { Category } from "../model/Category";
-import { ICategoriesRepository, ICreateCategoryDT0 } from "./ICategoriesRepository";
+import { Category } from "../../model/Category";
+import { ICategoriesRepository, ICreateCategoryDT0 } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
@@ -11,8 +11,12 @@ class CategoriesRepository implements ICategoriesRepository {
     this.categories = [];
   }
 
-  // logica
-  public static getItem(): CategoriesRepository {
+  /* Padrao Singleton Patters: tem como conceito 
+     a criacao de uma instancia de uma classe 
+     que vai ser uma instancia global da aplicacao
+  */
+
+  public static getInstance(): CategoriesRepository {
     if (!CategoriesRepository.INSTANCE) {
       CategoriesRepository.INSTANCE = new CategoriesRepository();
     }
